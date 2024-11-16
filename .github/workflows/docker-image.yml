@@ -15,6 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag registry.cn-hangzhou.aliyuncs.com/fanwb/mylamp:$(date +%s)
+      run: docker build . --file Dockerfile --tag registry.cn-hangzhou.aliyuncs.com/fanwb/mylamp:11.0
     - name: push the Docker image
-      run: docker push registry.cn-hangzhou.aliyuncs.com/fanwb/mylamp:$(date +%s)
+      run: 
+        docker login --username=fanwb.1985@163.com --password=suqian3NN registry.cn-hangzhou.aliyuncs.com
+        docker push registry.cn-hangzhou.aliyuncs.com/fanwb/mylamp:11.0
