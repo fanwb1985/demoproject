@@ -11,12 +11,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    environment: 
+      name: REPO_PASS
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag registry.cn-hangzhou.aliyuncs.com/fanwb/mylamp:11.0
     - name: login the Docker repo
-      run: docker login --username=fanwb.1985@163.com --password=${{ REPO_PASS.ALI_REPO_PASS }} registry.cn-hangzhou.aliyuncs.com
+      run: docker login --username=fanwb.1985@163.com --password=${{ secrets.ALI_REPO_PASS }} registry.cn-hangzhou.aliyuncs.com
     - name: pull the Docker image
       run:  docker push registry.cn-hangzhou.aliyuncs.com/fanwb/mylamp:11.0
