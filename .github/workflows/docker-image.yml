@@ -15,6 +15,13 @@ jobs:
       name: REPO_PASS
     steps:
     - uses: actions/checkout@v4
+    - name: Run Prisma Cloud 
+      id: prisma-cloud
+      uses: bridgecrewio/checkov-action@master
+      env:
+        PRISMA_API_URL: https://api.sg.prismacloud.io
+      with:
+        api-key: ${{ secrets.BC_API_KEY }}
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag registry.cn-hangzhou.aliyuncs.com/fanwb/mylamp:11.0
     - name: login the Docker repo
